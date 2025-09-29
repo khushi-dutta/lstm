@@ -1,0 +1,65 @@
+{
+    "system_config": {
+        "model_path": "flood_lstm_model",
+        "database_path": "flood_alerts.db",
+        "check_interval_minutes": 30,
+        "sequence_length": 7
+    },
+    
+    "alert_thresholds": {
+        "Red": 0.7,
+        "Orange": 0.6,
+        "Yellow": 0.5
+    },
+    
+    "email_config": {
+        "smtp_server": "smtp.gmail.com",
+        "smtp_port": 587,
+        "sender_email": "your_email@gmail.com",
+        "sender_password": "your_app_password",
+        "recipients": [
+            "emergency@kerala.gov.in",
+            "disaster@kerala.gov.in",
+            "collector@district.gov.in"
+        ]
+    },
+    
+    "webhook_config": {
+        "slack_webhooks": {
+            "Red": "https://hooks.slack.com/services/YOUR/RED/WEBHOOK",
+            "Orange": "https://hooks.slack.com/services/YOUR/ORANGE/WEBHOOK",
+            "Yellow": "https://hooks.slack.com/services/YOUR/YELLOW/WEBHOOK"
+        },
+        "teams_webhook": "https://your-organization.webhook.office.com/webhookb2/YOUR_WEBHOOK"
+    },
+    
+    "weather_api": {
+        "openweather_api_key": "your_openweather_api_key",
+        "base_url": "http://api.openweathermap.org/data/2.5"
+    },
+    
+    "emergency_contacts": {
+        "Kerala State Disaster Management Authority": "+91-471-2325250",
+        "Fire and Rescue Services": "101",
+        "Police Control Room": "100",
+        "Emergency Medical Services": "108",
+        "National Disaster Response Force": "+91-11-26105908"
+    },
+    
+    "districts": [
+        "Thiruvananthapuram",
+        "Kollam",
+        "Alappuzha",
+        "Kottayam",
+        "Ernakulam",
+        "Thrissur",
+        "Palakkad",
+        "Malappuram",
+        "Kozhikode",
+        "Wayanad",
+        "Kannur",
+        "Kasaragod",
+        "Pathanamthitta",
+        "Idukki"
+    ]
+}

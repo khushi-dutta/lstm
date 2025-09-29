@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_e67f44e17f7335f02fd9e009c7f7e6a5 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+    <div style="position: fixed; 
+                bottom: 50px; left: 50px; width: 180px; height: 120px; 
+                background-color: white; border:2px solid grey; z-index:9999; 
+                font-size:14px; padding: 10px; border-radius: 5px;">
+    <h4 style="margin: 0 0 10px 0;">Flood Alert Levels</h4>
+    <i class="fa fa-map-marker" style="color:red"></i> Red: High Risk (>7m water level)<br>
+    <i class="fa fa-map-marker" style="color:orange"></i> Orange: Medium Risk (5-7m)<br>
+    <i class="fa fa-map-marker" style="color:yellow"></i> Yellow: Low Risk (<5m)<br>
+    <br><i class="fa fa-circle" style="color:grey"></i> Historical alerts
+    </div>
+    
+    
+            <div class="folium-map" id="map_e67f44e17f7335f02fd9e009c7f7e6a5" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_e67f44e17f7335f02fd9e009c7f7e6a5 = L.map(
+                "map_e67f44e17f7335f02fd9e009c7f7e6a5",
+                {
+                    center: [10.8505, 76.2711],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 7,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_298540be9148591707992897bf5ef6a3 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_298540be9148591707992897bf5ef6a3.addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+            var marker_3cc14d805348854b1d4560a17e96fbc2 = L.marker(
+                [10.0827, 76.2711],
+                {
+}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+            var icon_4aeedcfca1ee4cdb384b5449b5aa4151 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "yellow",
+  "iconColor": "white",
+  "icon": "exclamation-triangle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_eccec4d46b0b5e1923bb8ea8ec711e10 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1ec52a56850ac8c1ebf67e045f65fd47 = $(`<div id="html_1ec52a56850ac8c1ebf67e045f65fd47" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 250px;">             <h4 style="color: yellow; margin: 0;">Ernakulam</h4>             <hr style="margin: 5px 0;">             <b>Prediction:</b> Yellow Alert<br>             <b>Confidence:</b> 85.9%<br>             <b>Water Level:</b> Stable<br>             <b>Precipitation:</b> 152.5mm<br>             <b>Coordinates:</b> 10.083, 76.271<br>             <small><i>Generated: 2025-09-29T22:38:34</i></small>         </div>         </div>`)[0];
+                popup_eccec4d46b0b5e1923bb8ea8ec711e10.setContent(html_1ec52a56850ac8c1ebf67e045f65fd47);
+            
+        
+
+        marker_3cc14d805348854b1d4560a17e96fbc2.bindPopup(popup_eccec4d46b0b5e1923bb8ea8ec711e10)
+        ;
+
+        
+    
+    
+            marker_3cc14d805348854b1d4560a17e96fbc2.bindTooltip(
+                `<div>
+                     Ernakulam - Yellow Alert
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3cc14d805348854b1d4560a17e96fbc2.setIcon(icon_4aeedcfca1ee4cdb384b5449b5aa4151);
+            
+    
+            var marker_657e698775f45a2cf416aaab8d3976c6 = L.marker(
+                [8.5241, 76.9366],
+                {
+}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+            var icon_f4027c919c188076f6197a6433a664ff = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "exclamation-triangle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_faa3ea496ee3d40b2944b507b05bf58f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3a7a9bb66b387ffeb88de9161b3416f7 = $(`<div id="html_3a7a9bb66b387ffeb88de9161b3416f7" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 250px;">             <h4 style="color: orange; margin: 0;">Thiruvananthapuram</h4>             <hr style="margin: 5px 0;">             <b>Prediction:</b> Orange Alert<br>             <b>Confidence:</b> 80.2%<br>             <b>Water Level:</b> Increasing<br>             <b>Precipitation:</b> 165.9mm<br>             <b>Coordinates:</b> 8.524, 76.937<br>             <small><i>Generated: 2025-09-29T22:38:34</i></small>         </div>         </div>`)[0];
+                popup_faa3ea496ee3d40b2944b507b05bf58f.setContent(html_3a7a9bb66b387ffeb88de9161b3416f7);
+            
+        
+
+        marker_657e698775f45a2cf416aaab8d3976c6.bindPopup(popup_faa3ea496ee3d40b2944b507b05bf58f)
+        ;
+
+        
+    
+    
+            marker_657e698775f45a2cf416aaab8d3976c6.bindTooltip(
+                `<div>
+                     Thiruvananthapuram - Orange Alert
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_657e698775f45a2cf416aaab8d3976c6.setIcon(icon_f4027c919c188076f6197a6433a664ff);
+            
+    
+            var marker_5660bf781963d41ddfaec8fbd0abbae7 = L.marker(
+                [9.5916, 76.5222],
+                {
+}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+            var icon_d218c22d4eddf250394f8186176c9ce5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "yellow",
+  "iconColor": "white",
+  "icon": "exclamation-triangle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4d377434655e84c3fa00146dcd437de9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_98dbf0d90c13d23f65a345b71b6d7b3b = $(`<div id="html_98dbf0d90c13d23f65a345b71b6d7b3b" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 250px;">             <h4 style="color: yellow; margin: 0;">Kottayam</h4>             <hr style="margin: 5px 0;">             <b>Prediction:</b> Yellow Alert<br>             <b>Confidence:</b> 68.2%<br>             <b>Water Level:</b> Stable<br>             <b>Precipitation:</b> 231.2mm<br>             <b>Coordinates:</b> 9.592, 76.522<br>             <small><i>Generated: 2025-09-29T22:38:34</i></small>         </div>         </div>`)[0];
+                popup_4d377434655e84c3fa00146dcd437de9.setContent(html_98dbf0d90c13d23f65a345b71b6d7b3b);
+            
+        
+
+        marker_5660bf781963d41ddfaec8fbd0abbae7.bindPopup(popup_4d377434655e84c3fa00146dcd437de9)
+        ;
+
+        
+    
+    
+            marker_5660bf781963d41ddfaec8fbd0abbae7.bindTooltip(
+                `<div>
+                     Kottayam - Yellow Alert
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5660bf781963d41ddfaec8fbd0abbae7.setIcon(icon_d218c22d4eddf250394f8186176c9ce5);
+            
+    
+            var marker_7225141eb871250111c56650709a1467 = L.marker(
+                [9.4981, 76.3388],
+                {
+}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+            var icon_011cc6495c3ebda3064af30047f2b614 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "yellow",
+  "iconColor": "white",
+  "icon": "exclamation-triangle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_02a1e698181cff1edb72fb1ee5b03124 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7989c6f6821dc25da607c445975539f1 = $(`<div id="html_7989c6f6821dc25da607c445975539f1" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 250px;">             <h4 style="color: yellow; margin: 0;">Alappuzha</h4>             <hr style="margin: 5px 0;">             <b>Prediction:</b> Yellow Alert<br>             <b>Confidence:</b> 73.2%<br>             <b>Water Level:</b> Stable<br>             <b>Precipitation:</b> 140.3mm<br>             <b>Coordinates:</b> 9.498, 76.339<br>             <small><i>Generated: 2025-09-29T22:38:34</i></small>         </div>         </div>`)[0];
+                popup_02a1e698181cff1edb72fb1ee5b03124.setContent(html_7989c6f6821dc25da607c445975539f1);
+            
+        
+
+        marker_7225141eb871250111c56650709a1467.bindPopup(popup_02a1e698181cff1edb72fb1ee5b03124)
+        ;
+
+        
+    
+    
+            marker_7225141eb871250111c56650709a1467.bindTooltip(
+                `<div>
+                     Alappuzha - Yellow Alert
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7225141eb871250111c56650709a1467.setIcon(icon_011cc6495c3ebda3064af30047f2b614);
+            
+    
+            var marker_cfac1d1e6386b5986ae757367fb47b6c = L.marker(
+                [10.5276, 76.2144],
+                {
+}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+            var icon_2c242862c5b164c736cbf7bbf4d1f781 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "yellow",
+  "iconColor": "white",
+  "icon": "exclamation-triangle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_825fec4a57a85f7254eba42f8ed5d0f3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_dfdaa2c1fc1c64f121bedab9bb9c25a2 = $(`<div id="html_dfdaa2c1fc1c64f121bedab9bb9c25a2" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 250px;">             <h4 style="color: yellow; margin: 0;">Thrissur</h4>             <hr style="margin: 5px 0;">             <b>Prediction:</b> Yellow Alert<br>             <b>Confidence:</b> 89.9%<br>             <b>Water Level:</b> Stable<br>             <b>Precipitation:</b> 185.1mm<br>             <b>Coordinates:</b> 10.528, 76.214<br>             <small><i>Generated: 2025-09-29T22:38:34</i></small>         </div>         </div>`)[0];
+                popup_825fec4a57a85f7254eba42f8ed5d0f3.setContent(html_dfdaa2c1fc1c64f121bedab9bb9c25a2);
+            
+        
+
+        marker_cfac1d1e6386b5986ae757367fb47b6c.bindPopup(popup_825fec4a57a85f7254eba42f8ed5d0f3)
+        ;
+
+        
+    
+    
+            marker_cfac1d1e6386b5986ae757367fb47b6c.bindTooltip(
+                `<div>
+                     Thrissur - Yellow Alert
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cfac1d1e6386b5986ae757367fb47b6c.setIcon(icon_2c242862c5b164c736cbf7bbf4d1f781);
+            
+    
+            var circle_marker_4925230145a0029d193eb6dbc3f5a1a0 = L.circleMarker(
+                [8.8932, 76.6141],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+        var popup_c809aa786fecf321c9302ac96a2c0208 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3fc65e1ceb8e2c3356490fe9be6b8e49 = $(`<div id="html_3fc65e1ceb8e2c3356490fe9be6b8e49" style="width: 100.0%; height: 100.0%;">Historical: Kollam - Orange (2025-08-15)</div>`)[0];
+                popup_c809aa786fecf321c9302ac96a2c0208.setContent(html_3fc65e1ceb8e2c3356490fe9be6b8e49);
+            
+        
+
+        circle_marker_4925230145a0029d193eb6dbc3f5a1a0.bindPopup(popup_c809aa786fecf321c9302ac96a2c0208)
+        ;
+
+        
+    
+    
+            circle_marker_4925230145a0029d193eb6dbc3f5a1a0.bindTooltip(
+                `<div>
+                     Historical: Kollam - Orange
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_308468986bf914b366ff64352ddcbb85 = L.circleMarker(
+                [12.499, 75.0577],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+        var popup_2cd5178d038076f1b93f8b8dd8e96cc7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e57b06b5e6cfb19afee5e8766358e725 = $(`<div id="html_e57b06b5e6cfb19afee5e8766358e725" style="width: 100.0%; height: 100.0%;">Historical: Kasaragod - Orange (2025-08-18)</div>`)[0];
+                popup_2cd5178d038076f1b93f8b8dd8e96cc7.setContent(html_e57b06b5e6cfb19afee5e8766358e725);
+            
+        
+
+        circle_marker_308468986bf914b366ff64352ddcbb85.bindPopup(popup_2cd5178d038076f1b93f8b8dd8e96cc7)
+        ;
+
+        
+    
+    
+            circle_marker_308468986bf914b366ff64352ddcbb85.bindTooltip(
+                `<div>
+                     Historical: Kasaragod - Orange
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_26f9fecde6a0097bbe32a34834cdfb63 = L.circleMarker(
+                [8.8932, 76.6141],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+        var popup_3386e165ffaaacc8c7dfa1a1d6cd4230 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f64d52d8772ad55d8d90204d45e3c63f = $(`<div id="html_f64d52d8772ad55d8d90204d45e3c63f" style="width: 100.0%; height: 100.0%;">Historical: Kollam - Orange (2025-08-06)</div>`)[0];
+                popup_3386e165ffaaacc8c7dfa1a1d6cd4230.setContent(html_f64d52d8772ad55d8d90204d45e3c63f);
+            
+        
+
+        circle_marker_26f9fecde6a0097bbe32a34834cdfb63.bindPopup(popup_3386e165ffaaacc8c7dfa1a1d6cd4230)
+        ;
+
+        
+    
+    
+            circle_marker_26f9fecde6a0097bbe32a34834cdfb63.bindTooltip(
+                `<div>
+                     Historical: Kollam - Orange
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_db01240d83847801d6e2990a8a3245e6 = L.circleMarker(
+                [12.499, 75.0577],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+        var popup_a62015d690438a733c5c8aab4d28098a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7ca4a321abd6f43452695818d130e013 = $(`<div id="html_7ca4a321abd6f43452695818d130e013" style="width: 100.0%; height: 100.0%;">Historical: Kasaragod - Orange (2025-08-21)</div>`)[0];
+                popup_a62015d690438a733c5c8aab4d28098a.setContent(html_7ca4a321abd6f43452695818d130e013);
+            
+        
+
+        circle_marker_db01240d83847801d6e2990a8a3245e6.bindPopup(popup_a62015d690438a733c5c8aab4d28098a)
+        ;
+
+        
+    
+    
+            circle_marker_db01240d83847801d6e2990a8a3245e6.bindTooltip(
+                `<div>
+                     Historical: Kasaragod - Orange
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_80cff4eac489109d3487435738cf9191 = L.circleMarker(
+                [11.6854, 76.132],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+        var popup_8814a415828faf45e728c6f50edb4193 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5bb80daf236687fa8fe2ae8e02d90f36 = $(`<div id="html_5bb80daf236687fa8fe2ae8e02d90f36" style="width: 100.0%; height: 100.0%;">Historical: Wayanad - Red (2025-08-19)</div>`)[0];
+                popup_8814a415828faf45e728c6f50edb4193.setContent(html_5bb80daf236687fa8fe2ae8e02d90f36);
+            
+        
+
+        circle_marker_80cff4eac489109d3487435738cf9191.bindPopup(popup_8814a415828faf45e728c6f50edb4193)
+        ;
+
+        
+    
+    
+            circle_marker_80cff4eac489109d3487435738cf9191.bindTooltip(
+                `<div>
+                     Historical: Wayanad - Red
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f5274509fb1b4447bd6c04adea19d8b7 = L.circleMarker(
+                [12.499, 75.0577],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+        var popup_403f62dfe947799ed15f5ace82202593 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a3fee7de1892e1d540fc8b47ebbaf1f7 = $(`<div id="html_a3fee7de1892e1d540fc8b47ebbaf1f7" style="width: 100.0%; height: 100.0%;">Historical: Kasaragod - Red (2025-08-10)</div>`)[0];
+                popup_403f62dfe947799ed15f5ace82202593.setContent(html_a3fee7de1892e1d540fc8b47ebbaf1f7);
+            
+        
+
+        circle_marker_f5274509fb1b4447bd6c04adea19d8b7.bindPopup(popup_403f62dfe947799ed15f5ace82202593)
+        ;
+
+        
+    
+    
+            circle_marker_f5274509fb1b4447bd6c04adea19d8b7.bindTooltip(
+                `<div>
+                     Historical: Kasaragod - Red
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a90128d74502ed5243cf87e9040caa0f = L.circleMarker(
+                [10.5276, 76.2144],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+        var popup_6d0873967f0f47287318b3c40cf4faef = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_88fe5f53eb61c5661585cc44a9d12a3e = $(`<div id="html_88fe5f53eb61c5661585cc44a9d12a3e" style="width: 100.0%; height: 100.0%;">Historical: Thrissur - Red (2025-08-13)</div>`)[0];
+                popup_6d0873967f0f47287318b3c40cf4faef.setContent(html_88fe5f53eb61c5661585cc44a9d12a3e);
+            
+        
+
+        circle_marker_a90128d74502ed5243cf87e9040caa0f.bindPopup(popup_6d0873967f0f47287318b3c40cf4faef)
+        ;
+
+        
+    
+    
+            circle_marker_a90128d74502ed5243cf87e9040caa0f.bindTooltip(
+                `<div>
+                     Historical: Thrissur - Red
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7dfb0741c832e768ced29b45c03db593 = L.circleMarker(
+                [11.2588, 75.7804],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+        var popup_928e0e368f33a9689b63b86d850927d1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e462a98d4db6455082680cf275f27470 = $(`<div id="html_e462a98d4db6455082680cf275f27470" style="width: 100.0%; height: 100.0%;">Historical: Kozhikode - Red (2025-08-14)</div>`)[0];
+                popup_928e0e368f33a9689b63b86d850927d1.setContent(html_e462a98d4db6455082680cf275f27470);
+            
+        
+
+        circle_marker_7dfb0741c832e768ced29b45c03db593.bindPopup(popup_928e0e368f33a9689b63b86d850927d1)
+        ;
+
+        
+    
+    
+            circle_marker_7dfb0741c832e768ced29b45c03db593.bindTooltip(
+                `<div>
+                     Historical: Kozhikode - Red
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_851f37461073c1c1b131841716a07378 = L.circleMarker(
+                [11.2588, 76.3183],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+        var popup_2441d4e5293593a46d32ce1d4183285f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8bb8c3c95763cac09d754b3a78c7f783 = $(`<div id="html_8bb8c3c95763cac09d754b3a78c7f783" style="width: 100.0%; height: 100.0%;">Historical: Malappuram - Orange (2025-08-11)</div>`)[0];
+                popup_2441d4e5293593a46d32ce1d4183285f.setContent(html_8bb8c3c95763cac09d754b3a78c7f783);
+            
+        
+
+        circle_marker_851f37461073c1c1b131841716a07378.bindPopup(popup_2441d4e5293593a46d32ce1d4183285f)
+        ;
+
+        
+    
+    
+            circle_marker_851f37461073c1c1b131841716a07378.bindTooltip(
+                `<div>
+                     Historical: Malappuram - Orange
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b55a097be762c06eb7e8da8556b19eb1 = L.circleMarker(
+                [9.4981, 76.3388],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+        var popup_8fe0acd054b39b22207a30740e16ce02 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4b9f9b85caadc3096211edc30a8bb5fe = $(`<div id="html_4b9f9b85caadc3096211edc30a8bb5fe" style="width: 100.0%; height: 100.0%;">Historical: Alappuzha - Red (2025-08-21)</div>`)[0];
+                popup_8fe0acd054b39b22207a30740e16ce02.setContent(html_4b9f9b85caadc3096211edc30a8bb5fe);
+            
+        
+
+        circle_marker_b55a097be762c06eb7e8da8556b19eb1.bindPopup(popup_8fe0acd054b39b22207a30740e16ce02)
+        ;
+
+        
+    
+    
+            circle_marker_b55a097be762c06eb7e8da8556b19eb1.bindTooltip(
+                `<div>
+                     Historical: Alappuzha - Red
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ef0bf212e49e29b1fd63096cc097f422 = L.circleMarker(
+                [11.8745, 75.3704],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+        var popup_52dc12e7330b5f10fbb8a2728c1d5e67 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ef3f6a80724acd93d7cfd5360079fd85 = $(`<div id="html_ef3f6a80724acd93d7cfd5360079fd85" style="width: 100.0%; height: 100.0%;">Historical: Kannur - Red (2025-08-04)</div>`)[0];
+                popup_52dc12e7330b5f10fbb8a2728c1d5e67.setContent(html_ef3f6a80724acd93d7cfd5360079fd85);
+            
+        
+
+        circle_marker_ef0bf212e49e29b1fd63096cc097f422.bindPopup(popup_52dc12e7330b5f10fbb8a2728c1d5e67)
+        ;
+
+        
+    
+    
+            circle_marker_ef0bf212e49e29b1fd63096cc097f422.bindTooltip(
+                `<div>
+                     Historical: Kannur - Red
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ee1c28d484662bd0d330b27e303fafda = L.circleMarker(
+                [9.8501, 77.0166],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+        var popup_5260d8b33333fe20cd790328d24d04b6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_22758469d68cf5015fdbb4db3ada6be5 = $(`<div id="html_22758469d68cf5015fdbb4db3ada6be5" style="width: 100.0%; height: 100.0%;">Historical: Idukki - Red (2025-08-05)</div>`)[0];
+                popup_5260d8b33333fe20cd790328d24d04b6.setContent(html_22758469d68cf5015fdbb4db3ada6be5);
+            
+        
+
+        circle_marker_ee1c28d484662bd0d330b27e303fafda.bindPopup(popup_5260d8b33333fe20cd790328d24d04b6)
+        ;
+
+        
+    
+    
+            circle_marker_ee1c28d484662bd0d330b27e303fafda.bindTooltip(
+                `<div>
+                     Historical: Idukki - Red
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3ffb34e2928235602bd651b7459ec035 = L.circleMarker(
+                [12.499, 75.0577],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+        var popup_4851bff0c00b7ea5f844b274c6ffba0c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_51771a47530201ef15e75923fe708a57 = $(`<div id="html_51771a47530201ef15e75923fe708a57" style="width: 100.0%; height: 100.0%;">Historical: Kasaragod - Orange (2025-08-26)</div>`)[0];
+                popup_4851bff0c00b7ea5f844b274c6ffba0c.setContent(html_51771a47530201ef15e75923fe708a57);
+            
+        
+
+        circle_marker_3ffb34e2928235602bd651b7459ec035.bindPopup(popup_4851bff0c00b7ea5f844b274c6ffba0c)
+        ;
+
+        
+    
+    
+            circle_marker_3ffb34e2928235602bd651b7459ec035.bindTooltip(
+                `<div>
+                     Historical: Kasaragod - Orange
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_12954f49acc980ba77ba762e9e7363c8 = L.circleMarker(
+                [9.4981, 76.3388],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+        var popup_8c42f477b5a39f3491352ac2bd33e01b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_67dab73280e6e9c9382fbd4ccb4e8a23 = $(`<div id="html_67dab73280e6e9c9382fbd4ccb4e8a23" style="width: 100.0%; height: 100.0%;">Historical: Alappuzha - Red (2025-08-14)</div>`)[0];
+                popup_8c42f477b5a39f3491352ac2bd33e01b.setContent(html_67dab73280e6e9c9382fbd4ccb4e8a23);
+            
+        
+
+        circle_marker_12954f49acc980ba77ba762e9e7363c8.bindPopup(popup_8c42f477b5a39f3491352ac2bd33e01b)
+        ;
+
+        
+    
+    
+            circle_marker_12954f49acc980ba77ba762e9e7363c8.bindTooltip(
+                `<div>
+                     Historical: Alappuzha - Red
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_51431ad954b86aea10935937bd9ffa02 = L.circleMarker(
+                [8.8932, 76.6141],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+        var popup_b9f4722aa7d0f8bf1ae6abab35ea213c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_99eac0c536f16e32e3ca3e4c088d36e4 = $(`<div id="html_99eac0c536f16e32e3ca3e4c088d36e4" style="width: 100.0%; height: 100.0%;">Historical: Kollam - Red (2025-08-31)</div>`)[0];
+                popup_b9f4722aa7d0f8bf1ae6abab35ea213c.setContent(html_99eac0c536f16e32e3ca3e4c088d36e4);
+            
+        
+
+        circle_marker_51431ad954b86aea10935937bd9ffa02.bindPopup(popup_b9f4722aa7d0f8bf1ae6abab35ea213c)
+        ;
+
+        
+    
+    
+            circle_marker_51431ad954b86aea10935937bd9ffa02.bindTooltip(
+                `<div>
+                     Historical: Kollam - Red
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_37d5e4ce83e42ede54bc9870ffc13f71 = L.circleMarker(
+                [11.6854, 76.132],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+        var popup_8fdd743451f7e3791c517cf39736d0dc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0c0ac3f30fa79361c6959b0e0c661c25 = $(`<div id="html_0c0ac3f30fa79361c6959b0e0c661c25" style="width: 100.0%; height: 100.0%;">Historical: Wayanad - Orange (2025-08-03)</div>`)[0];
+                popup_8fdd743451f7e3791c517cf39736d0dc.setContent(html_0c0ac3f30fa79361c6959b0e0c661c25);
+            
+        
+
+        circle_marker_37d5e4ce83e42ede54bc9870ffc13f71.bindPopup(popup_8fdd743451f7e3791c517cf39736d0dc)
+        ;
+
+        
+    
+    
+            circle_marker_37d5e4ce83e42ede54bc9870ffc13f71.bindTooltip(
+                `<div>
+                     Historical: Wayanad - Orange
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f9631cd75160532425934d9a45302bd3 = L.circleMarker(
+                [10.5276, 76.2144],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+        var popup_25f2b217ce645b8a3bef22acbc117c9d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fd07282be249cd34b07b4116b3ca7111 = $(`<div id="html_fd07282be249cd34b07b4116b3ca7111" style="width: 100.0%; height: 100.0%;">Historical: Thrissur - Red (2025-08-21)</div>`)[0];
+                popup_25f2b217ce645b8a3bef22acbc117c9d.setContent(html_fd07282be249cd34b07b4116b3ca7111);
+            
+        
+
+        circle_marker_f9631cd75160532425934d9a45302bd3.bindPopup(popup_25f2b217ce645b8a3bef22acbc117c9d)
+        ;
+
+        
+    
+    
+            circle_marker_f9631cd75160532425934d9a45302bd3.bindTooltip(
+                `<div>
+                     Historical: Thrissur - Red
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_16699367df3994015b60c02e3c08c96e = L.circleMarker(
+                [10.5276, 76.2144],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+        var popup_2729cb184442e11557961e31cf1e4d5d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5cf28b1b4eae5b75ff276fff85a7babd = $(`<div id="html_5cf28b1b4eae5b75ff276fff85a7babd" style="width: 100.0%; height: 100.0%;">Historical: Thrissur - Red (2025-08-22)</div>`)[0];
+                popup_2729cb184442e11557961e31cf1e4d5d.setContent(html_5cf28b1b4eae5b75ff276fff85a7babd);
+            
+        
+
+        circle_marker_16699367df3994015b60c02e3c08c96e.bindPopup(popup_2729cb184442e11557961e31cf1e4d5d)
+        ;
+
+        
+    
+    
+            circle_marker_16699367df3994015b60c02e3c08c96e.bindTooltip(
+                `<div>
+                     Historical: Thrissur - Red
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1d068df373f84b25920665e8087272b0 = L.circleMarker(
+                [10.7867, 76.6548],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+        var popup_0951a5afd95cbd704fc52267c2ac016c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_040950667fe0960efd40f98a3869896f = $(`<div id="html_040950667fe0960efd40f98a3869896f" style="width: 100.0%; height: 100.0%;">Historical: Palakkad - Red (2025-08-03)</div>`)[0];
+                popup_0951a5afd95cbd704fc52267c2ac016c.setContent(html_040950667fe0960efd40f98a3869896f);
+            
+        
+
+        circle_marker_1d068df373f84b25920665e8087272b0.bindPopup(popup_0951a5afd95cbd704fc52267c2ac016c)
+        ;
+
+        
+    
+    
+            circle_marker_1d068df373f84b25920665e8087272b0.bindTooltip(
+                `<div>
+                     Historical: Palakkad - Red
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1c77d9726eff3efb9fdec6a285c842e3 = L.circleMarker(
+                [10.7867, 76.6548],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_e67f44e17f7335f02fd9e009c7f7e6a5);
+        
+    
+        var popup_d9e685e474a921f7ef934293f8d60198 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5e9a6b609c8281f0819680edb5ebb923 = $(`<div id="html_5e9a6b609c8281f0819680edb5ebb923" style="width: 100.0%; height: 100.0%;">Historical: Palakkad - Red (2025-08-09)</div>`)[0];
+                popup_d9e685e474a921f7ef934293f8d60198.setContent(html_5e9a6b609c8281f0819680edb5ebb923);
+            
+        
+
+        circle_marker_1c77d9726eff3efb9fdec6a285c842e3.bindPopup(popup_d9e685e474a921f7ef934293f8d60198)
+        ;
+
+        
+    
+    
+            circle_marker_1c77d9726eff3efb9fdec6a285c842e3.bindTooltip(
+                `<div>
+                     Historical: Palakkad - Red
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>

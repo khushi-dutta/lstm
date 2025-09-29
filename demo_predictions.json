@@ -1,0 +1,89 @@
+{
+  "timestamp": "2025-09-29T22:38:34.969169",
+  "predictions": [
+    {
+      "district": "Ernakulam",
+      "latitude": 10.0827,
+      "longitude": 76.2711,
+      "predicted_alert": "Yellow",
+      "confidence": 0.85881171461063,
+      "day_ahead": 1,
+      "water_level_trend": "Stable",
+      "precipitation_forecast": 152.51599271001166,
+      "timestamp": "2025-09-29T22:38:34.785962"
+    },
+    {
+      "district": "Thiruvananthapuram",
+      "latitude": 8.5241,
+      "longitude": 76.9366,
+      "predicted_alert": "Orange",
+      "confidence": 0.8020967627066807,
+      "day_ahead": 1,
+      "water_level_trend": "Increasing",
+      "precipitation_forecast": 165.87917875773087,
+      "timestamp": "2025-09-29T22:38:34.824623"
+    },
+    {
+      "district": "Kottayam",
+      "latitude": 9.5916,
+      "longitude": 76.5222,
+      "predicted_alert": "Yellow",
+      "confidence": 0.6817336907203029,
+      "day_ahead": 1,
+      "water_level_trend": "Stable",
+      "precipitation_forecast": 231.23314070728944,
+      "timestamp": "2025-09-29T22:38:34.862459"
+    },
+    {
+      "district": "Alappuzha",
+      "latitude": 9.4981,
+      "longitude": 76.3388,
+      "predicted_alert": "Yellow",
+      "confidence": 0.7323132161149429,
+      "day_ahead": 1,
+      "water_level_trend": "Stable",
+      "precipitation_forecast": 140.30091700379506,
+      "timestamp": "2025-09-29T22:38:34.898404"
+    },
+    {
+      "district": "Thrissur",
+      "latitude": 10.5276,
+      "longitude": 76.2144,
+      "predicted_alert": "Yellow",
+      "confidence": 0.8991197723976561,
+      "day_ahead": 1,
+      "water_level_trend": "Stable",
+      "precipitation_forecast": 185.14078794880945,
+      "timestamp": "2025-09-29T22:38:34.934498"
+    }
+  ],
+  "summary": {
+    "total_districts": 5,
+    "alert_counts": {
+      "Yellow": 4,
+      "Orange": 1
+    },
+    "high_confidence_alerts": 3,
+    "emergency_contacts": {
+      "Kerala State Disaster Management Authority": {
+        "phone": "+91-471-2721566",
+        "email": "ksdma@kerala.gov.in",
+        "website": "www.ksdma.kerala.gov.in"
+      },
+      "Emergency Services": {
+        "Police": "100",
+        "Fire": "101",
+        "Ambulance": "108",
+        "Disaster Helpline": "1077"
+      },
+      "District Emergency Contacts": {
+        "Ernakulam": "+91-484-2368407",
+        "Thiruvananthapuram": "+91-471-2463977",
+        "Kottayam": "+91-481-2560244",
+        "Alappuzha": "+91-477-2251194",
+        "Thrissur": "+91-487-2420022"
+      }
+    }
+  },
+  "map_file": "kerala_flood_demo_map.html"
+}
